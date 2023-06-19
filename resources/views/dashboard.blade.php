@@ -1,0 +1,70 @@
+@extends('layouts.app')
+@section('title', 'Planner')
+
+@section('content')
+    <div class="card">
+        <div class="card-body">
+            <div class="calendar">
+                <div id="nothing-here" class="text-center my-3" style="display: none;">Nothing here, select what you are interested in on the <a href="{{ route('planner') }}">Planner</a> page</div>
+                <div id="content-container">
+                    <div class="calendar-logos-container">
+                        @foreach($series as $categoryId=>$categorySeries)
+                            @foreach($categorySeries as $s)
+                                <div class="calendar-series calendar-logos" data-series-id="{{ $s->series_id }}" style="display: none;">
+                                    <div class="series-logo-large series-logo calendar-series-logo" data-bs-toggle="tooltip" data-bs-html="true" title="{{ $s->dashboardTooltipText() }}">
+                                        <img src="{{ $s->logo_url }}"/>
+                                    </div>
+                                </div>
+                            @endforeach
+                        @endforeach
+                    </div>
+                    <div class="calendar-outer inner-shadow">
+                        <div class="calendar-container">
+                            @foreach($series as $categoryId=>$categorySeries)
+                                @foreach($categorySeries as $s)
+                                    <div class="calendar-series" data-series-id="{{ $s->series_id }}" style="display: none;">
+                                        @foreach($raceWeeks as $startDate)
+                                            @php
+                                                $startOfRaceWeek = $startDate;
+                                                $endOfRaceWeek = $startOfRaceWeek->copy()->addWeek();
+                                                $weekSchedule = $s->schedules
+                                                    ->where('start_date', '>=', $startOfRaceWeek)
+                                                    ->where('start_date', '<', $endOfRaceWeek)
+                                                    ->first();
+                                            @endphp
+
+                                            @if($weekSchedule)
+                                                <div class="calendar-week active-week {{ ($weekSchedule->start_date >= $startOfWeek && $weekSchedule->start_date < $endOfWeek) ? 'calendar-current-week' : '' }}" data-series-id="{{ $s->series_id }}">
+                                                    @include('layouts.track', [
+                                                        'inactive' => true,
+                                                        'disabled' => true,
+                                                        'schedule' => $weekSchedule,
+                                                    ])
+                                                </div>
+                                            @else
+                                                <div class="calendar-week {{ ($startDate == $startOfWeek) ? 'calendar-current-week' : '' }}">
+                                                    @include('layouts.blank-track', [
+                                                        'seriesId' => $s->series_id,
+                                                    ])
+                                                </div>
+                                            @endif
+                                        @endforeach
+                                    </div>
+                                @endforeach
+                            @endforeach
+                            <div class="mb-2"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+@endsection
+
+@push('scripts')
+    <script>
+        $(function() {
+            showDashboardFavorites();
+        });
+    </script>
+@endpush
