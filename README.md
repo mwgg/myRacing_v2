@@ -5,8 +5,8 @@ This is the source code of myRacing, which is available online for everyone at [
 
 This is also a successor to the previous [project](https://github.com/mwgg/myRacing) with the same name. Even though this version looks largely the same, it features a complete rework of both the back-end and the front-end, and is made to be a public website, not just a personal self-hosted application. Thus, I've chosen to publish this rework in its own repo. 
 
-![Dashboard](https://github.com/mwgg/myRacing/raw/main/myracing_1.jpg)
-![Planner](https://github.com/mwgg/myRacing/raw/main/myracing_2.jpg)
+![Dashboard](https://github.com/mwgg/myRacing_v2/raw/main/myracing_1.jpg)
+![Planner](https://github.com/mwgg/myRacing_v2/raw/main/myracing_2.jpg)
 
 ## Running myRacing yourself
 
