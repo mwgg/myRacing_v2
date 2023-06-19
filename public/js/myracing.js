@@ -204,6 +204,13 @@ function initTrackBuyLinks() {
     });
 }
 
+function initFavorites() {
+    $(".planner-calendar-container .track-front[data-unique-id]").unbind('click').on("click", function(e){
+        if(e.target.nodeName == "A") return;
+        setFavorite($(this));
+    });
+}
+
 function initTooltips() {
     var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
     var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
@@ -214,6 +221,7 @@ function initTooltips() {
 $(function() {
     initTrackBuyLinks();
     markOwnedTracks();
+    initFavorites();
     initTooltips();
 
     $('#loader').fadeTo(400, 0, function() {

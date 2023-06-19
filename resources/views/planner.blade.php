@@ -23,7 +23,7 @@
                 </div>
             </div>
 
-            <div class="d-flex flex-wrap planner-hidden" id="planner-schedule-{{ $s->series_id }}" data-bs-parent="#planner-accordion">
+            <div class="d-flex flex-wrap planner-calendar-container planner-hidden" id="planner-schedule-{{ $s->series_id }}" data-bs-parent="#planner-accordion">
                 @foreach($s->schedules as $schedule)
                     <div class="{{ $schedule->isCurrentWeek() ? 'calendar-current-week' : '' }}">
                         @include('layouts.track', [
@@ -46,16 +46,11 @@
     <script>
         $(function() {
             $(".planner-card[data-target]").each(function(){
-                $(this).on("click", function(){
+                $(this).unbind('click').on("click", function(){
                     var target = $(this).data("target");
                     $(".planner-visible").removeClass("planner-visible").addClass("planner-hidden");
                     $(target).removeClass("planner-hidde").addClass("planner-visible");
                 });
-            });
-
-            $(".track-container[data-unique-id]").unbind('click').on("click", function(e){
-                if(e.target.nodeName == "A") return;
-                setFavorite($(this));
             });
 
             markFavorites();

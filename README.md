@@ -22,10 +22,13 @@ sudo apt install nginx openssl php8.1 php8.1-common php8.1-fpm php8.1-dom php8.1
 
 Create an empty database file: `touch /path/to/myracing.db`
 
-Rename `.env.example` to `.env`, configure the database:
+Rename `.env.example` to `.env`, configure the database and provide your iRacing credentials:
 ```
 DB_CONNECTION=sqlite
 DB_DATABASE=/path/to/myracing.db
+
+IRACING_USERNAME="yourusername"
+IRACING_PASSWORD="yourpassword"
 ```
 
 Run the following commands in the project folder:
