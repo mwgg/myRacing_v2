@@ -4,12 +4,13 @@ namespace App\Models;
 
 use App\iRacing\Constants;
 use Carbon\Carbon;
+use GeneaLabs\LaravelModelCaching\Traits\Cachable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class SeriesSchedule extends Model
 {
-    use HasFactory;
+    use HasFactory, Cachable;
 
     protected $fillable = [
         'unique_id',
