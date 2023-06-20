@@ -50,8 +50,14 @@ class Series extends Model
 
     public function tooltipText()
     {
+        $line2 = [];
+        $line2[] = Constants::LIC_NAMES[$this->currentSeason->license_group];
+        if($this->currentSeason->is_heat_racing) $line2[] = 'Heat racing';
+        $line2[] = $this->currentSeason->formatSetupType();
+        $line2[] = $this->currentSeason->formatOfficialStatus();
+
         $lines = [$this->series_name];
-        $lines[] = Constants::LIC_NAMES[$this->currentSeason->license_group] .', '. $this->currentSeason->formatSetupType() .', ' . $this->currentSeason->formatOfficialStatus();
+        $lines[] = implode(', ', $line2);
         $lines[] = $this->currentSeason->schedule_description;
 
         return implode('<br>', $lines);
