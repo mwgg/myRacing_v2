@@ -26,7 +26,7 @@
             <h4 class="mt-4">Import</h4>
 
             <p>
-                When you are ready to import your data, choose the file you saved earlier, and click "Upload".
+                When you are ready to import your data, paste the text you saved earlier into the field below, and click "Import".
             </p>
             <p>
                 <span class="text-warning">Note:</span> this will erase any existing selections!
@@ -36,17 +36,13 @@
                 <div class="col-8">
                     <div class="card">
                         <div class="card-body">
-                            <div class="row justify-content-center mt-3">
-                                <div class="col-6">
-                                    <input class="form-control" type="file" id="file">
-                                </div>
-                                <div class="col-2">
-                                    <button type="submit" id="upload" class="btn btn-primary mb-3">Upload</button>
-                                </div>
+                            <div class="text-center">
+                                <textarea class="form-control" id="import-data" name="import-data" rows="3"></textarea>
+                                <button type="submit" id="import" class="btn btn-primary my-3">Import</button>
                             </div>
                             <div class="text-center">
                                 <div id="result-success" class="text-success" style="display: none">Data imported successfully</div>
-                                <div id="result-error" class="text-danger" style="display: none">Something went wrong</div>
+                                <div id="result-error" class="text-danger" style="display: none">Something went wrong, please check the data is correct</div>
                             </div>
                         </div>
                     </div>
@@ -71,34 +67,32 @@
         $(function() {
             showExportData();
 
-            $('#upload').unbind('click').on('click', function(e) {
+            $('#import').unbind('click').on('click', function(e) {
                 e.preventDefault();
 
-                $('#result-success').hide();
                 $('#result-error').hide();
+                $('#result-success').hide();
 
-                var formData = new FormData();
-                formData.append('import', $('#file')[0].files[0]);
+                var $el = $('#import-data');
 
-                $.ajax({
-                    url: '{{ route('import') }}',
-                    type: 'POST',
-                    headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
-                    data : formData,
-                    processData: false,
-                    contentType: false,
-                    success: function(result) {
-                        if(result.status !== 'success') {
-                            $('#result-error').show();
-                            return;
-                        }
+                try {
+                    var json = JSON.parse($el.val());
+                }
+                catch(err) {
+                    $('#result-error').show();
+                    console.log(err);
+                    return;
+                }
 
-                        saveFavorites(result.data.favorites);
-                        saveOwnedTracks(result.data.owned);
+                if(json.favorites === undefined) json.favorites = [];
+                if(json.owned === undefined) json.owned = [];
 
-                        $('#result-success').show();
-                    }
-                });
+                saveFavorites(json.favorites);
+                saveOwnedTracks(json.owned);
+
+                showExportData();
+
+                $('#result-success').show();
             });
         });
     </script>

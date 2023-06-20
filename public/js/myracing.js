@@ -143,7 +143,7 @@ function saveOwnedTracks(data) {
 
 function loadData(key) {
     var data = localStorage.getItem(key);
-    data = $.parseJSON(data);
+    data = JSON.parse(data);
     if(!data) data = [];
     return data;
 }
