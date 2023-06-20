@@ -26,14 +26,15 @@ class Series extends Model
 
     public function currentSeason()
     {
-        return $this->seasons()->one()->ofMany([], function($query) {
+        return $this->seasons()->one()->ofMany([], function($query)
+        {
             $query->where('active', true);
         });
     }
 
     public static function withCurrentSeasonSchedules()
     {
-        return Series::with('currentSeason', 'currentSeason.schedules', 'currentSeason.schedules.track')
+        return Series::with('currentSeason', 'currentSeason.schedules', 'currentSeason.schedules.track', 'currentSeason.carClasses', 'currentSeason.carClasses.cars')
             ->whereHas('currentSeason')
             ->orderBy('category_id')
             ->orderBy('series_name')
@@ -52,6 +53,15 @@ class Series extends Model
         $lines = [$this->series_name];
         $lines[] = implode(', ', $line2);
         $lines[] = $this->currentSeason->schedule_description;
+        $lines[] = '';
+
+        $cars = [];
+        foreach($this->currentSeason->carClasses as $carClass)
+        {
+            $carNames = array_column($carClass->cars->toArray(), 'car_name');
+            $cars = array_merge($carNames, $cars);
+        }
+        $lines[] = implode('<br>', $cars);
 
         return implode('<br>', $lines);
     }

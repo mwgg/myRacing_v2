@@ -20,27 +20,32 @@ class Kernel extends ConsoleKernel
         $schedule->command('update:series-season')
             ->timezone('UTC')
             ->daily()
-            ->at('0:05');
-
-        $schedule->command('update:series-assets')
-            ->timezone('UTC')
-            ->daily()
-            ->at('0:10');
+            ->at('0:01');
 
         $schedule->command('update:tracks')
             ->timezone('UTC')
             ->daily()
-            ->at('0:15');
-
-        $schedule->command('update:track-assets')
-            ->timezone('UTC')
-            ->daily()
-            ->at('0:20');
+            ->at('0:02');
 
         $schedule->command('update:cars')
             ->timezone('UTC')
             ->daily()
-            ->at('0:25');
+            ->at('0:03');
+
+        $schedule->command('update:car-class')
+            ->timezone('UTC')
+            ->daily()
+            ->at('0:04');
+
+        $schedule->command('update:series-assets')
+            ->timezone('UTC')
+            ->daily()
+            ->at('0:05');
+
+        $schedule->command('update:track-assets')
+            ->timezone('UTC')
+            ->daily()
+            ->at('0:06');
     }
 
     /**

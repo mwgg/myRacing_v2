@@ -33,6 +33,8 @@ class UpdateSeriesSeason extends UpdateData
                     'start_date' => Carbon::parse($season->start_date),
                 ]
             );
+
+            $seriesSeason->carClasses()->sync($season->car_class_ids);
             
             foreach($season->schedules as $week)
             {
@@ -55,10 +57,6 @@ class UpdateSeriesSeason extends UpdateData
                         'track_id' => $week->track->track_id,
                     ]
                 );
-
-//                if(!$week->car_restrictions) continue;
-//                $carIds = array_column($week->car_restrictions, 'car_id');
-//                $schedule->cars()->sync($carIds);
             }
         }
     }

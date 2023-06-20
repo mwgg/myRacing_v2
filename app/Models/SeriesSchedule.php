@@ -42,11 +42,6 @@ class SeriesSchedule extends Model
         return $this->hasOne(Track::class, 'track_id', 'track_id');
     }
 
-    public function cars()
-    {
-        return $this->belongsToMany(Car::class, 'car_series_schedule', 'unique_id', 'car_id', 'unique_id', 'car_id');
-    }
-
     public function isCurrentWeek()
     {
         return $this->start_date == Carbon::now()->startOfWeek(2);
@@ -71,7 +66,6 @@ class SeriesSchedule extends Model
 
     public function trackTooltipText()
     {
-        //$carNames = '<br>' . implode('<br>', $this->cars->pluck('car_name')->toArray());
         return $this->formatStartType() .', '. $this->formatRaceLength(); // .'<br>'. $carNames;
     }
 }

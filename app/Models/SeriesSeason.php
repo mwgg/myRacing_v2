@@ -40,6 +40,11 @@ class SeriesSeason extends Model
         return $this->hasMany(SeriesSchedule::class, 'season_id', 'season_id');
     }
 
+    public function carClasses()
+    {
+        return $this->belongsToMany(CarClass::class, 'series_season_car_class', 'season_id', 'car_class_id', 'season_id', 'car_class_id');
+    }
+
     public function formatSetupType()
     {
         return ($this->fixed_setup ? 'Fixed' : 'Open') . ' setup';
