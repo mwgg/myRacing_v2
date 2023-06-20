@@ -22,6 +22,7 @@ class SeriesSeason extends Model
         'season_quarter',
         'series_id',
         'start_date',
+        'active',
     ];
 
     protected $casts = [
@@ -35,7 +36,7 @@ class SeriesSeason extends Model
 
     public function schedules()
     {
-        return $this->hasMany(SeriesSchedule::class, 'series_id', 'series_id');
+        return $this->hasMany(SeriesSchedule::class, 'season_id', 'season_id');
     }
 
     public function formatSetupType()
