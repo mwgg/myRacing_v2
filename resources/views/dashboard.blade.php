@@ -27,7 +27,7 @@
                                             @php
                                                 $startOfRaceWeek = $startDate;
                                                 $endOfRaceWeek = $startOfRaceWeek->copy()->addWeek();
-                                                $weekSchedule = $s->schedules
+                                                $weekSchedule = $s->currentSeason->schedules
                                                     ->where('start_date', '>=', $startOfRaceWeek)
                                                     ->where('start_date', '<', $endOfRaceWeek)
                                                     ->first();

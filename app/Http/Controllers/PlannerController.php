@@ -14,15 +14,14 @@ class PlannerController extends Controller
     public function dashboard(Request $request)
     {
         $startOfWeek = Carbon::now()->startOfWeek(2);
-        $endOfWeek = $startOfWeek->copy()->addWeek();
         $startOfLastWeek = SeriesSchedule::max('start_date');
         $raceWeeks = CarbonPeriod::create($startOfWeek, '1 week', $startOfLastWeek)->toArray();
 
-        $series = Series::withUpcomingSchedules();
+        $series = Series::withCurrentSeasonSchedules();
 
         return view('dashboard', [
             'startOfWeek' => $startOfWeek,
-            'endOfWeek' => $endOfWeek,
+            'endOfWeek' => $startOfWeek->copy()->addWeek(),
             'startOfLastWeek' => $startOfLastWeek,
             'raceWeeks' => $raceWeeks,
             'series' => $series,
@@ -31,7 +30,7 @@ class PlannerController extends Controller
 
     public function planner(Request $request)
     {
-        $series = Series::withUpcomingSchedules();
+        $series = Series::withCurrentSeasonSchedules();
 
         return view('planner', [
             'series' => $series,

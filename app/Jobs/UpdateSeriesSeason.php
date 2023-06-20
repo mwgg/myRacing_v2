@@ -33,7 +33,7 @@ class UpdateSeriesSeason extends UpdateData
                     'start_date' => Carbon::parse($season->start_date),
                 ]
             );
-
+            
             foreach($season->schedules as $week)
             {
                 $schedule = SeriesSchedule::updateOrCreate(

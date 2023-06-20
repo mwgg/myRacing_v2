@@ -24,7 +24,7 @@
             </div>
 
             <div class="d-flex flex-wrap planner-calendar-container planner-hidden" id="planner-schedule-{{ $s->series_id }}" data-bs-parent="#planner-accordion">
-                @foreach($s->schedules as $schedule)
+                @foreach($s->currentSeason->schedules as $schedule)
                     <div class="{{ $schedule->isCurrentWeek() ? 'calendar-current-week' : '' }}">
                         @include('layouts.track', [
                             'schedule' => $schedule,

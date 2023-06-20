@@ -26,22 +26,15 @@ class Series extends Model
 
     public function currentSeason()
     {
-        return $this->seasons()->one()->ofMany('season_id', 'max');
+        return $this->seasons()->one()->ofMany([], function($query) {
+            $query->where('active', true);
+        });
     }
 
-    public function schedules()
+    public static function withCurrentSeasonSchedules()
     {
-        return $this->hasMany(SeriesSchedule::class, 'series_id', 'series_id');
-    }
-
-    public static function withUpcomingSchedules()
-    {
-        $startOfWeek = Carbon::now()->startOfWeek(2);
-
-        return Series::with('currentSeason', 'schedules', 'schedules.track')
-            ->whereHas('schedules', function($query) use($startOfWeek) {
-                $query->where('start_date', '>=', $startOfWeek);
-            })
+        return Series::with('currentSeason', 'currentSeason.schedules', 'currentSeason.schedules.track')
+            ->whereHas('currentSeason')
             ->orderBy('category_id')
             ->orderBy('series_name')
             ->get()
