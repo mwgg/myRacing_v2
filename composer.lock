@@ -1863,16 +1863,16 @@
         },
         {
             "name": "mwgg/iracing-php",
-            "version": "v1.4.0",
+            "version": "v1.5.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/mwgg/iracing-php.git",
-                "reference": "6f4695b4829b9aa57a18ca4d4c2238e0c6186f4c"
+                "reference": "ff3f5948dbd122a311002a753164977faac37988"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/mwgg/iracing-php/zipball/6f4695b4829b9aa57a18ca4d4c2238e0c6186f4c",
-                "reference": "6f4695b4829b9aa57a18ca4d4c2238e0c6186f4c",
+                "url": "https://api.github.com/repos/mwgg/iracing-php/zipball/ff3f5948dbd122a311002a753164977faac37988",
+                "reference": "ff3f5948dbd122a311002a753164977faac37988",
                 "shasum": ""
             },
             "require": {
@@ -1897,9 +1897,9 @@
             "description": "iRacing Data API wrapper for PHP",
             "support": {
                 "issues": "https://github.com/mwgg/iracing-php/issues",
-                "source": "https://github.com/mwgg/iracing-php/tree/v1.4.0"
+                "source": "https://github.com/mwgg/iracing-php/tree/v1.5.0"
             },
-            "time": "2022-12-19T09:18:35+00:00"
+            "time": "2023-06-20T11:50:52+00:00"
         },
         {
             "name": "nesbot/carbon",
