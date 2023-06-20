@@ -20,6 +20,7 @@ class UpdateSeriesSeason extends UpdateData
                     'season_id' => $season->season_id,
                 ],
                 [
+                    'active' => $season->active,
                     'fixed_setup' => $season->fixed_setup,
                     'is_heat_racing' => $season->is_heat_racing,
                     'license_group' => $season->license_group,
