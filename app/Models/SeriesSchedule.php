@@ -51,6 +51,11 @@ class SeriesSchedule extends Model
         return $this->start_date == Carbon::now()->startOfWeek(2);
     }
 
+    public function isPastWeek()
+    {
+        return $this->start_date < Carbon::now()->startOfWeek(2);
+    }
+
     public function formatStartType()
     {
         return $this->start_type . ' start';

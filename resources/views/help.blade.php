@@ -17,7 +17,7 @@
             <h4>Basic usage</h4>
             <p>
                 Look for the series you would like to race on the <a href="{{ route('planner') }}">Planner</a> page, click on the series name to expand the current season's schedule.
-                You will be presented with the upcoming season schedule, starting with the current week.
+                You will be presented with the season schedule, with the past weeks grayed out.
                 Tracks you don't yet own will have a red band on the left side, and a shopping cart icon, and owned tracks will have a checkmark icon.
                 Clicking on this icon will allow you to mark the track as owned, as well as open the track page.
                 Choose the weeks that interest you, and click on those tracks, which will highlight them in green.

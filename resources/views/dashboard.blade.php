@@ -11,7 +11,7 @@
                         @foreach($series as $categoryId=>$categorySeries)
                             @foreach($categorySeries as $s)
                                 <div class="calendar-series calendar-logos" data-series-id="{{ $s->series_id }}" style="display: none;">
-                                    <div class="series-logo-large series-logo calendar-series-logo" data-bs-toggle="tooltip" data-bs-html="true" title="{{ $s->dashboardTooltipText() }}">
+                                    <div class="series-logo-large series-logo calendar-series-logo" data-bs-toggle="tooltip" data-bs-html="true" title="{{ $s->tooltipText() }}">
                                         <img src="{{ $s->logo_url }}"/>
                                     </div>
                                 </div>

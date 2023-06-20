@@ -66,7 +66,7 @@ function showDashboardFavorites() {
 var ownedTracksData = {
     owned: {
         btnClass: 'btn-warning',
-        bgClass: 'bg-success',
+        bgClass: 'bg-secondary',
         boxClass: 'track-ownership-green',
         btnText: 'Mark not owned',
         btnIcon: '&#xE03A;'
@@ -205,7 +205,7 @@ function initTrackBuyLinks() {
 }
 
 function initFavorites() {
-    $(".planner-calendar-container .track-front[data-unique-id]").unbind('click').on("click", function(e){
+    $(".planner-calendar-container .track-front[data-unique-id]:not(.track-past-week)").unbind('click').on("click", function(e){
         if(e.target.nodeName == "A") return;
         setFavorite($(this));
     });

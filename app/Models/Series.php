@@ -48,7 +48,7 @@ class Series extends Model
             ->groupBy('category_id');
     }
 
-    public function dashboardTooltipText()
+    public function tooltipText()
     {
         $lines = [$this->series_name];
         $lines[] = Constants::LIC_NAMES[$this->currentSeason->license_group] .', '. $this->currentSeason->formatSetupType() .', ' . $this->currentSeason->formatOfficialStatus();

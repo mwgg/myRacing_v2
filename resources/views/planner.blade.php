@@ -12,7 +12,7 @@
                     <span class="category-icon iracing-icons">{!! \App\iRacing\Constants::CAT_ICONS[$s->category_id] !!}</span>
                     <span class="series-license">{{ \App\iRacing\Constants::LIC_NAMES[$s->currentSeason->license_group] }}</span>
                 </span>
-                    <div class="series-logo series-logo-large position-absolute">
+                    <div class="series-logo series-logo-large position-absolute" data-bs-toggle="tooltip" data-bs-html="true" title="{{ $s->tooltipText() }}">
                         <img src="{{ $s->logo_url }}"/>
                     </div>
                     <div class="planner-series-name position-absolute">{{ $s->series_name }}</div>
@@ -28,6 +28,7 @@
                     <div class="{{ $schedule->isCurrentWeek() ? 'calendar-current-week' : '' }}">
                         @include('layouts.track', [
                             'schedule' => $schedule,
+                            'disabled' => $schedule->isPastWeek(),
                         ])
                     </div>
                 @endforeach
