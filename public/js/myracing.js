@@ -53,11 +53,16 @@ function showDashboardFavorites() {
         }
         $el.addClass('track-picked').removeClass('track-past-week');
     });
+
     $('.calendar-logos[data-series-id]').each(function() {
         var id = $(this).data('series-id');
         if($('.track-container.track-picked[data-series-id="'+id+'"]').length) {
             $(this).show();
             $('.calendar-series[data-series-id="'+id+'"]').show();
+        }
+        else {
+            $(this).remove();
+            $('.calendar-series[data-series-id="'+id+'"]').remove();
         }
         $('.active-week[data-series-id="'+id+'"]:last').nextAll().remove();
     });
@@ -216,6 +221,16 @@ function initTooltips() {
     var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
         return new bootstrap.Tooltip(tooltipTriggerEl)
     })
+}
+
+function filterDashboardFavorites(filter) {
+    if(filter == 0) {
+        $('.calendar-series').show();
+    }
+    else {
+        $('.calendar-series').hide();
+        $('.calendar-series[data-category-id="'+filter+'"]').show();
+    }
 }
 
 $(function() {

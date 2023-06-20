@@ -316,3 +316,6 @@ h1 {
     left:50%;
     transform: translate(-50%, -50%);
 }
+.btn-sm .iracing-icons {
+    font-size: 11px;
+}
