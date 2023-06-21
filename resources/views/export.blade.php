@@ -13,7 +13,7 @@
                 If you need to preserve this data (if you are switching to a different browser, or when planning to reinstall the OS, or changing PCs entirely) you can use this feature to save your data to a text file and then import it in your new browser.
             </p>
 
-            <h4>Export</h4>
+            <h4 class="mt-5">Export</h4>
             <p>
                 If you wish to save your data, save the following to a text file somewhere you can access it later.
             </p>
@@ -23,26 +23,42 @@
                 </div>
             </div>
 
-            <h4 class="mt-4">Import</h4>
+            <h4 class="mt-5">Import</h4>
 
             <p>
                 When you are ready to import your data, paste the text you saved earlier into the field below, and click "Import".
             </p>
             <p>
-                <span class="text-warning">Note:</span> this will erase any existing selections!
+                <span class="text-warning">Note:</span> this will replace and/or erase all existing selections!
             </p>
 
             <div class="card my-3">
                 <div class="card-body">
                     <div class="text-center">
                         <textarea class="form-control" id="import-data" name="import-data" rows="3"></textarea>
+                        <div class="text-center mt-2">
+                            <div id="result-import-success" class="text-success" data-result-msg="" style="display: none">Data imported successfully</div>
+                            <div id="result-import-error" class="text-danger" data-result-msg="" style="display: none">Something went wrong, please check the data is correct</div>
+                        </div>
                         <button type="submit" id="import" class="btn btn-primary mt-3 mb-2">Import</button>
                     </div>
-                    <div class="text-center">
-                        <div id="result-success" class="text-success" style="display: none">Data imported successfully</div>
-                        <div id="result-error" class="text-danger" style="display: none">Something went wrong, please check the data is correct</div>
-                    </div>
                 </div>
+            </div>
+
+            <h4 class="mt-5">Delete all local data</h4>
+
+            <p>
+                If you wish to remove all myRacing data from your browser, you can do so with the button below.
+            </p>
+            <p>
+                <span class="text-danger">Note:</span> this will erase all existing selections!
+            </p>
+            <div class="text-center">
+                <div class="text-center mt-2">
+                    <div id="result-delete-success" class="text-success" data-result-msg="" style="display: none">Data erased successfully</div>
+                    <div id="result-delete-error" class="text-danger" data-result-msg="" style="display: none">Something went wrong</div>
+                </div>
+                <button type="submit" id="delete" class="btn btn-danger mt-3 mb-2">Delete</button>
             </div>
         </div>
     </div>
@@ -66,8 +82,8 @@
             $('#import').unbind('click').on('click', function(e) {
                 e.preventDefault();
 
-                $('#result-error').hide();
-                $('#result-success').hide();
+                if (!confirm('This will replace and/or erase all existing selections, are you sure you want to proceed?')) return;
+                $('div[data-result-msg]').hide();
 
                 var $el = $('#import-data');
 
@@ -75,7 +91,7 @@
                     var json = JSON.parse($el.val());
                 }
                 catch(err) {
-                    $('#result-error').show();
+                    $('#result-import-error').show();
                     console.log(err);
                     return;
                 }
@@ -89,8 +105,28 @@
                 showExportData();
 
                 $el.val('');
-                $('#result-success').show();
+                $('#result-import-success').show();
             });
+
+            $('#delete').unbind('click').on('click', function(e) {
+                e.preventDefault();
+
+                if (!confirm('This will erase all existing selections, are you sure you want to proceed?')) return;
+                $('div[data-result-msg]').hide();
+
+                try {
+                    localStorage.removeItem('myracing-favorites');
+                    localStorage.removeItem('myracing-owned-tracks');
+                }
+                catch(err) {
+                    $('#result-delete-error').show();
+                    console.log(err);
+                    return;
+                }
+
+                showExportData();
+                $('#result-delete-success').show();
+            })
         });
     </script>
 @endpush
