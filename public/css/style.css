@@ -44,7 +44,7 @@ hr {
     z-index: 100;
 }
 .navbar {
-    height: 57px;
+    line-height: 10px;
 }
 h1 {
     margin-bottom: 20px;
