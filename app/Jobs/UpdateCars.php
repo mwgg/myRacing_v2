@@ -12,7 +12,7 @@ class UpdateCars extends UpdateData
 
         foreach($cars as $c)
         {
-            $car = Car::firstOrCreate(
+            $car = Car::updateOrCreate(
                 [
                     'car_id' => $c->car_id
                 ],

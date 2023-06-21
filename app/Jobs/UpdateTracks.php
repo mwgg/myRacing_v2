@@ -12,7 +12,7 @@ class UpdateTracks extends UpdateData
 
         foreach($tracks as $t)
         {
-            $track = Track::firstOrCreate(
+            $track = Track::updateOrCreate(
                 [
                     'track_id' => $t->track_id
                 ],

@@ -4,6 +4,7 @@ namespace App\Console;
 
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
+use DateTimeZone;
 
 class Kernel extends ConsoleKernel
 {
@@ -13,39 +14,25 @@ class Kernel extends ConsoleKernel
     protected function schedule(Schedule $schedule): void
     {
         $schedule->command('update:series')
-            ->timezone('UTC')
-            ->daily()
-            ->at('0:00');
+            ->dailyAt('0:00');
 
         $schedule->command('update:series-season')
-            ->timezone('UTC')
-            ->daily()
-            ->at('0:01');
+            ->dailyAt('0:01');
 
         $schedule->command('update:tracks')
-            ->timezone('UTC')
-            ->daily()
-            ->at('0:02');
+            ->dailyAt('0:02');
 
         $schedule->command('update:cars')
-            ->timezone('UTC')
-            ->daily()
-            ->at('0:03');
+            ->dailyAt('0:03');
 
         $schedule->command('update:car-class')
-            ->timezone('UTC')
-            ->daily()
-            ->at('0:04');
+            ->dailyAt('0:04');
 
         $schedule->command('update:series-assets')
-            ->timezone('UTC')
-            ->daily()
-            ->at('0:05');
+            ->dailyAt('0:05');
 
         $schedule->command('update:track-assets')
-            ->timezone('UTC')
-            ->daily()
-            ->at('0:06');
+            ->dailyAt('0:06');
     }
 
     /**
@@ -56,5 +43,13 @@ class Kernel extends ConsoleKernel
         $this->load(__DIR__.'/Commands');
 
         require base_path('routes/console.php');
+    }
+
+    /**
+     * Get the timezone that should be used by default for scheduled events.
+     */
+    protected function scheduleTimezone(): DateTimeZone|string|null
+    {
+        return 'UTC';
     }
 }
