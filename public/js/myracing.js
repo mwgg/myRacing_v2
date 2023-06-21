@@ -45,6 +45,10 @@ function showDashboardFavorites() {
         return;
     }
 
+    // making sure schedules actually loaded before messing with things and potentially deleting items from favorites
+    var schedulesLoaded = $('.track-container[data-unique-id]').length > 0;
+    if(!schedulesLoaded) return;
+
     $.each(favorites, function(i) {
         var $el = $('.track-container[data-unique-id="'+favorites[i]+'"]');
         if(!$el.length) {

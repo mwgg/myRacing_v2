@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Models\Series;
 use App\Models\SeriesSchedule;
-use App\Models\SeriesSeason;
 use Carbon\Carbon;
 use Carbon\CarbonPeriod;
 use Illuminate\Http\Request;
