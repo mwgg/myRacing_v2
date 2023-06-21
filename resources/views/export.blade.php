@@ -32,19 +32,15 @@
                 <span class="text-warning">Note:</span> this will erase any existing selections!
             </p>
 
-            <div class="row justify-content-center my-5">
-                <div class="col-8">
-                    <div class="card">
-                        <div class="card-body">
-                            <div class="text-center">
-                                <textarea class="form-control" id="import-data" name="import-data" rows="3"></textarea>
-                                <button type="submit" id="import" class="btn btn-primary my-3">Import</button>
-                            </div>
-                            <div class="text-center">
-                                <div id="result-success" class="text-success" style="display: none">Data imported successfully</div>
-                                <div id="result-error" class="text-danger" style="display: none">Something went wrong, please check the data is correct</div>
-                            </div>
-                        </div>
+            <div class="card my-3">
+                <div class="card-body">
+                    <div class="text-center">
+                        <textarea class="form-control" id="import-data" name="import-data" rows="3"></textarea>
+                        <button type="submit" id="import" class="btn btn-primary mt-3 mb-2">Import</button>
+                    </div>
+                    <div class="text-center">
+                        <div id="result-success" class="text-success" style="display: none">Data imported successfully</div>
+                        <div id="result-error" class="text-danger" style="display: none">Something went wrong, please check the data is correct</div>
                     </div>
                 </div>
             </div>
@@ -92,6 +88,7 @@
 
                 showExportData();
 
+                $el.val('');
                 $('#result-success').show();
             });
         });
