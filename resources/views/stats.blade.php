@@ -29,13 +29,21 @@
 
             <h4>Tracks not on the schedule</h4>
 
-            <ul>
-                @foreach($unusedTracks as $trackName)
-                    <li>
-                        {{ $trackName }}
-                    </li>
-                @endforeach
-            </ul>
+            <div class="row">
+                <div class="col-lg-6 col-sm-11 my-3">
+                    <div class="card">
+                        <div class="card-body">
+                            <ul>
+                                @foreach($unusedTracks as $trackName)
+                                    <li>
+                                        {{ $trackName }}
+                                    </li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 @endsection
