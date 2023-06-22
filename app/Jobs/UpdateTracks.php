@@ -17,7 +17,7 @@ class UpdateTracks extends UpdateData
                     'track_id' => $t->track_id
                 ],
                 [
-                    'category_id' => $t->track_id,
+                    'category_id' => $t->category_id,
                     'free' => $t->free_with_subscription,
                     'location' => $t->location,
                     'package_id' => $t->package_id,

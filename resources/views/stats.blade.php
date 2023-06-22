@@ -6,7 +6,7 @@
         <div class="card-body">
             <h1>Season stats</h1>
 
-            <h4>Most common tracks by category</h4>
+            <h4>Most common tracks by category, in non-rookie series</h4>
             <div class="row justify-content-center">
                 @foreach(\App\iRacing\Constants::CATEGORIES as $categoryId=>$categoryName)
                     <div class="col-lg-6 col-sm-11 my-3">
@@ -26,6 +26,16 @@
                     </div>
                 @endforeach
             </div>
+
+            <h4>Tracks not on the schedule</h4>
+
+            <ul>
+                @foreach($unusedTracks as $trackName)
+                    <li>
+                        {{ $trackName }}
+                    </li>
+                @endforeach
+            </ul>
         </div>
     </div>
 @endsection
