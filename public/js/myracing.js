@@ -40,6 +40,7 @@ function removeFromFavoritesByValue(val) {
 function showDashboardFavorites() {
     var favorites = loadFavorites();
     if(!favorites.length) {
+        $('.calendar-series[data-series-id]').remove();
         $('#nothing-here').show();
         $('#content-container').hide();
         return;
@@ -230,10 +231,21 @@ function initTooltips() {
 function filterDashboardFavorites(filter) {
     if(filter == 0) {
         $('.calendar-series').show();
+        $('#content-container').show();
+        $('#nothing-here').hide();
     }
     else {
         $('.calendar-series').hide();
-        $('.calendar-series[data-category-id="'+filter+'"]').show();
+        var $filteredSeries = $('.calendar-series[data-category-id="'+filter+'"]');
+        if(!$filteredSeries.length) {
+            $('#nothing-here').show();
+            $('#content-container').hide();
+        }
+        else {
+            $filteredSeries.show();
+            $('#nothing-here').hide();
+            $('#content-container').show();
+        }
     }
 }
 
