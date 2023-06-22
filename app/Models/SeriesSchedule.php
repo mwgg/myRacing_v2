@@ -64,8 +64,16 @@ class SeriesSchedule extends Model
         return '';
     }
 
-    public function trackTooltipText()
+    public function formatRaceWeekNum()
     {
-        return $this->formatStartType() .', '. $this->formatRaceLength(); // .'<br>'. $carNames;
+        return 'Week ' . $this->race_week_num + 1;
+    }
+
+    public function tooltipText()
+    {
+        $lines = [$this->formatRaceWeekNum() .', '. $this->start_date->format('F j')];
+        $lines[] = $this->formatStartType() .', '. $this->formatRaceLength();
+
+        return implode('<br>', $lines);
     }
 }
