@@ -37,6 +37,9 @@
                 <li class="nav-item">
                     <a class="nav-link {{ (Route::currentRouteName() == 'planner') ? 'active' : '' }}" href="{{ route('planner') }}">Planner</a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link {{ (Route::currentRouteName() == 'stats') ? 'active' : '' }}" href="{{ route('stats') }}">Stats</a>
+                </li>
             </ul>
         </nav>
     </div>
