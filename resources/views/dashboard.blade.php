@@ -18,8 +18,11 @@
                     <div class="calendar-logos-container">
                         @foreach($series as $categoryId=>$categorySeries)
                             @foreach($categorySeries as $s)
-                                <div class="calendar-series calendar-logos" data-series-id="{{ $s->series_id }}" data-category-id="{{ $s->category_id }}" style="display: none;">
-                                    <div class="series-logo-large series-logo calendar-series-logo" data-bs-toggle="tooltip" data-bs-html="true" title="{{ $s->tooltipText() }}">
+                                <div class="calendar-series calendar-logos d-flex" data-series-id="{{ $s->series_id }}" data-category-id="{{ $s->category_id }}" style="display: none;">
+                                    <div class="no-select license-badge badge badge-pill pill-cat-license mr-1 {{ \App\iRacing\Constants::LIC_CLASSES[$s->currentSeason->license_group] }}">
+                                        <span class="category-icon category-icon-lg iracing-icons">{!! \App\iRacing\Constants::CAT_ICONS[$s->category_id] !!}</span>
+                                    </div>
+                                    <div class="series-logo-large series-logo calendar-series-logo ml-2" data-bs-toggle="tooltip" data-bs-html="true" title="{{ $s->tooltipText() }}">
                                         <img src="{{ $s->logo_url }}"/>
                                     </div>
                                 </div>

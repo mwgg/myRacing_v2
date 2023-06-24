@@ -39,6 +39,7 @@ class Series extends Model
             ->orderBy('category_id')
             ->orderBy('series_name')
             ->get()
+            ->sortByDesc('currentSeason.license_group')
             ->groupBy('category_id');
     }
 

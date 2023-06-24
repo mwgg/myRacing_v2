@@ -3,15 +3,15 @@
 
 @section('content')
     @foreach($series as $categoryId=>$categorySeries)
-        <h5 class="@if(!$loop->first) mt-4 @endif"><span class="iracing-icons subtitle-icon">{!! \App\iRacing\Constants::CAT_ICONS[$categoryId] !!}</span> {{ \App\iRacing\Constants::CATEGORIES[$categoryId] }}</h5>
+        <h4 class="ml-1 @if(!$loop->first) mt-4 @endif"><span class="iracing-icons subtitle-icon">{!! \App\iRacing\Constants::CAT_ICONS[$categoryId] !!}</span> {{ \App\iRacing\Constants::CATEGORIES[$categoryId] }}</h5>
 
         @foreach($categorySeries as $s)
             <div class="card planner-card shadow" data-target="#planner-schedule-{{ $s->series_id }}" data-series-id="{{ $s->series_id }}">
-                <div class="card-body position-relative">
+                <div class="card-body position-relative calendar-logos">
                     <span class="no-select position-absolute license-badge badge badge-pill pill-cat-license {{ \App\iRacing\Constants::LIC_CLASSES[$s->currentSeason->license_group] }}">
-                    <span class="category-icon iracing-icons">{!! \App\iRacing\Constants::CAT_ICONS[$s->category_id] !!}</span>
-                    <span class="series-license">{{ \App\iRacing\Constants::LIC_NAMES[$s->currentSeason->license_group] }}</span>
-                </span>
+                        <span class="category-icon iracing-icons">{!! \App\iRacing\Constants::CAT_ICONS[$s->category_id] !!}</span>
+                        <span class="series-license">{{ \App\iRacing\Constants::LIC_NAMES[$s->currentSeason->license_group] }}</span>
+                    </span>
                     <div class="series-logo series-logo-large position-absolute" data-bs-toggle="tooltip" data-bs-html="true" title="{{ $s->tooltipText() }}">
                         <img src="{{ $s->logo_url }}"/>
                     </div>
@@ -22,7 +22,6 @@
                     </div>
                 </div>
             </div>
-
             <div class="d-flex flex-wrap planner-calendar-container planner-hidden" id="planner-schedule-{{ $s->series_id }}" data-bs-parent="#planner-accordion">
                 @foreach($s->currentSeason->schedules as $schedule)
                     <div class="{{ $schedule->isCurrentWeek() ? 'calendar-current-week' : '' }}">
