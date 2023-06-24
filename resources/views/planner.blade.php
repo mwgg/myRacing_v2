@@ -31,12 +31,6 @@
                         ])
                     </div>
                 @endforeach
-                <div class="d-flex justify-content-center flex-nowrap mt-2 mb-2 mx-auto">
-                    <div class="form-floating">
-                        <textarea class="form-control series-notes" data-series-id="{{ $s->series_id }}" placeholder="Leave your notes here" id="commentsTextarea" cols="70" rows="5"></textarea>
-                        <label for="commentsTextarea">Notes for {{ $s->series_name }}</label>
-                    </div>
-                </div>
             </div>
         @endforeach
     @endforeach
