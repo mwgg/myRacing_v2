@@ -39,16 +39,20 @@
                                                     ->where('start_date', '>=', $startOfRaceWeek)
                                                     ->where('start_date', '<', $endOfRaceWeek)
                                                     ->first();
+                                                $currentWeek = $weekSchedule && $weekSchedule->start_date >= $startOfWeek && $weekSchedule->start_date < $endOfWeek;
                                             @endphp
 
                                             @if($weekSchedule)
-                                                <div class="calendar-week active-week {{ ($weekSchedule->start_date >= $startOfWeek && $weekSchedule->start_date < $endOfWeek) ? 'calendar-current-week' : '' }}" data-series-id="{{ $s->series_id }}">
+                                                <div class="calendar-week active-week {{ $currentWeek ? 'calendar-current-week' : '' }}" data-series-id="{{ $s->series_id }}">
                                                     @include('layouts.track', [
                                                         'inactive' => true,
                                                         'disabled' => true,
                                                         'schedule' => $weekSchedule,
                                                     ])
                                                 </div>
+                                                @if($currentWeek)
+                                                    <div class="iracing-icons text-secondary no-select mr-2" data-bs-toggle="tooltip" title="Upcoming weeks">&#xE123;</div>
+                                                @endif
                                             @else
                                                 <div class="calendar-week {{ ($startDate == $startOfWeek) ? 'calendar-current-week' : '' }}">
                                                     @include('layouts.blank-track', [

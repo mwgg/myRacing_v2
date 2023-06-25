@@ -204,7 +204,7 @@ h1 {
     bottom: 0px;
     right: 0px;
     border-radius: 5px 0px 2px 0px;
-    line-height: 16px;
+    line-height: 17px;
 }
 .track-favorite .track-buy {
     border-radius: 5px 0px 0px 0px;
@@ -276,7 +276,7 @@ h1 {
     align-items: center;
 }
 .calendar-week.calendar-current-week {
-    margin-right: 15px;
+    margin-right: 10px;
     margin-left: 10px;
 }
 .calendar-current-week .track-container {
