@@ -32,15 +32,19 @@ class Series extends Model
         });
     }
 
-    public static function withCurrentSeasonSchedules()
+    public static function withCurrentSeasonSchedules($sortByLicense = true)
     {
-        return Series::with('currentSeason', 'currentSeason.schedules', 'currentSeason.schedules.track', 'currentSeason.carClasses', 'currentSeason.carClasses.cars')
+        $series = Series::with('currentSeason', 'currentSeason.schedules', 'currentSeason.schedules.track', 'currentSeason.carClasses', 'currentSeason.carClasses.cars')
             ->whereHas('currentSeason')
             ->orderBy('category_id')
             ->orderBy('series_name')
-            ->get()
-            ->sortByDesc('currentSeason.license_group')
-            ->groupBy('category_id');
+            ->get();
+
+        if($sortByLicense) {
+            $series = $series->sortByDesc('currentSeason.license_group');
+        }
+
+        return $series->groupBy('category_id');
     }
 
     public function tooltipText()

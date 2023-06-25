@@ -16,7 +16,7 @@ class PlannerController extends Controller
         $startOfLastWeek = SeriesSchedule::max('start_date');
         $raceWeeks = CarbonPeriod::create($startOfWeek, '1 week', $startOfLastWeek)->toArray();
 
-        $series = Series::withCurrentSeasonSchedules();
+        $series = Series::withCurrentSeasonSchedules(false);
 
         return view('dashboard', [
             'startOfWeek' => $startOfWeek,
