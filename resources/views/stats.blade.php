@@ -12,7 +12,7 @@
                     <div class="col-lg-6 col-sm-11 my-3">
                         <div class="card">
                             <div class="card-body">
-                                <h5 class="mt-1 mb-3"><span class="iracing-icons subtitle-icon">{!! \App\iRacing\Constants::CAT_ICONS[$categoryId] !!}</span> {{ \App\iRacing\Constants::CATEGORIES[$categoryId] }}</h5>
+                                <h5 class="mt-1 mb-3 ml-1"><span class="iracing-icons subtitle-icon">{!! \App\iRacing\Constants::CAT_ICONS[$categoryId] !!}</span> {{ \App\iRacing\Constants::CATEGORIES[$categoryId] }}</h5>
                                 <table class="table table-dark table-sm">
                                     @foreach(array_slice($trackCounts[$categoryId], 0, 10) as $trackName=>$trackCount)
                                         <tr>
