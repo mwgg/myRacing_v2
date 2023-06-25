@@ -30,7 +30,7 @@
                         @endforeach
                     </div>
                     <div class="calendar-outer inner-shadow">
-                        <div class="calendar-container">
+                        <div class="calendar-container inner-shadow" data-simplebar>
                             @foreach($series as $categoryId=>$categorySeries)
                                 @foreach($categorySeries as $s)
                                     <div class="calendar-series" data-series-id="{{ $s->series_id }}" data-category-id="{{ $s->category_id }}" style="display: none;">

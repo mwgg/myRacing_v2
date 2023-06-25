@@ -246,7 +246,6 @@ h1 {
     top: 14px;
 }
 .calendar-container {
-    overflow-x: scroll;
     white-space: nowrap;
     padding: 10px;
 }
@@ -322,4 +321,13 @@ h1 {
 }
 .btn-sm .iracing-icons {
     font-size: 11px;
+}
+.simplebar-scrollbar::before {
+    background-color: var(--bs-secondary);
+}
+.simplebar-track {
+    background-color: #1c1f22;
+}
+.simplebar-track.simplebar-horizontal {
+    height: 13px;
 }
