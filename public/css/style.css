@@ -248,6 +248,7 @@ h1 {
 .calendar-container {
     white-space: nowrap;
     padding: 10px;
+    border-radius: var(--bs-border-radius);
 }
 .calendar-week {
     width: 277px;
