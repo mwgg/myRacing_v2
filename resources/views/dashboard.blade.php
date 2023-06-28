@@ -50,15 +50,15 @@
                                                         'schedule' => $weekSchedule,
                                                     ])
                                                 </div>
-                                                @if($currentWeek)
-                                                    <div class="iracing-icons text-secondary no-select mr-2" data-bs-toggle="tooltip" title="Upcoming weeks">&#xE123;</div>
-                                                @endif
                                             @else
                                                 <div class="calendar-week {{ ($startDate == $startOfWeek) ? 'calendar-current-week' : '' }}">
                                                     @include('layouts.blank-track', [
                                                         'seriesId' => $s->series_id,
                                                     ])
                                                 </div>
+                                            @endif
+                                            @if($loop->first)
+                                                <div class="iracing-icons text-secondary no-select mr-2" data-bs-toggle="tooltip" title="Upcoming weeks">&#xE123;</div>
                                             @endif
                                         @endforeach
                                     </div>
