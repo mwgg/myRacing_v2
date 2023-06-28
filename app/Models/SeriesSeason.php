@@ -45,6 +45,13 @@ class SeriesSeason extends Model
         return $this->belongsToMany(CarClass::class, 'series_season_car_class', 'season_id', 'car_class_id', 'season_id', 'car_class_id');
     }
 
+    public function weekSchedule($startOfRaceWeek)
+    {
+        return $this->schedules
+            ->where('start_date', '>=', $startOfRaceWeek)
+            ->where('start_date', '<', $startOfRaceWeek->copy()->addWeek());
+    }
+
     public function formatSetupType()
     {
         return ($this->fixed_setup ? 'Fixed' : 'Open') . ' setup';

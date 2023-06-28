@@ -20,8 +20,6 @@ class PlannerController extends Controller
 
         return view('dashboard', [
             'startOfWeek' => $startOfWeek,
-            'endOfWeek' => $startOfWeek->copy()->addWeek(),
-            'startOfLastWeek' => $startOfLastWeek,
             'raceWeeks' => $raceWeeks,
             'series' => $series,
         ]);

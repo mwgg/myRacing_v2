@@ -2,7 +2,6 @@
 
 namespace App\Models;
 
-use App\iRacing\Constants;
 use Carbon\Carbon;
 use GeneaLabs\LaravelModelCaching\Traits\Cachable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;

@@ -32,18 +32,8 @@
                                 @foreach($categorySeries as $s)
                                     <div class="calendar-series" data-series-id="{{ $s->series_id }}" data-category-id="{{ $s->category_id }}" style="display: none;">
                                         @foreach($raceWeeks as $startDate)
-                                            @php
-                                                $startOfRaceWeek = $startDate;
-                                                $endOfRaceWeek = $startOfRaceWeek->copy()->addWeek();
-                                                $weekSchedule = $s->currentSeason->schedules
-                                                    ->where('start_date', '>=', $startOfRaceWeek)
-                                                    ->where('start_date', '<', $endOfRaceWeek)
-                                                    ->first();
-                                                $currentWeek = $weekSchedule && $weekSchedule->start_date >= $startOfWeek && $weekSchedule->start_date < $endOfWeek;
-                                            @endphp
-
-                                            @if($weekSchedule)
-                                                <div class="calendar-week active-week {{ $currentWeek ? 'calendar-current-week' : '' }}" data-series-id="{{ $s->series_id }}">
+                                            @if($weekSchedule = $s->currentSeason->weekSchedule($startDate)->first())
+                                                <div class="calendar-week active-week {{ $weekSchedule->isCurrentWeek() ? 'calendar-current-week' : '' }}" data-series-id="{{ $s->series_id }}">
                                                     @include('layouts.track', [
                                                         'inactive' => true,
                                                         'disabled' => true,
