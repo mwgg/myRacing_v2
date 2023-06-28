@@ -2,6 +2,7 @@
 
 namespace App\Console\Commands;
 
+use App\Jobs\UpdateSeriesAssetsJob;
 use Illuminate\Console\Command;
 
 class UpdateSeriesAssets extends Command
@@ -25,7 +26,7 @@ class UpdateSeriesAssets extends Command
      */
     public function handle()
     {
-        $job = new \App\Jobs\UpdateSeriesAssets();
+        $job = new UpdateSeriesAssetsJob();
         $job->handle();
     }
 }

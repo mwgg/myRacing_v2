@@ -4,7 +4,7 @@ namespace App\Jobs;
 
 use App\Models\CarClass;
 
-class UpdateCarClass extends UpdateData
+class UpdateCarClassJob extends UpdateDataJob
 {
     public function handle(): void
     {

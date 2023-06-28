@@ -2,6 +2,7 @@
 
 namespace App\Console\Commands;
 
+use App\Jobs\UpdateTracksJob;
 use Illuminate\Console\Command;
 
 class UpdateTracks extends Command
@@ -25,7 +26,7 @@ class UpdateTracks extends Command
      */
     public function handle()
     {
-        $job = new \App\Jobs\UpdateTracks();
+        $job = new UpdateTracksJob();
         $job->handle();
     }
 }

@@ -2,6 +2,7 @@
 
 namespace App\Console\Commands;
 
+use App\Jobs\UpdateCarsJob;
 use Illuminate\Console\Command;
 
 class UpdateCars extends Command
@@ -25,7 +26,7 @@ class UpdateCars extends Command
      */
     public function handle()
     {
-        $job = new \App\Jobs\UpdateCars();
+        $job = new UpdateCarsJob();
         $job->handle();
     }
 }

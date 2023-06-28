@@ -2,6 +2,7 @@
 
 namespace App\Console\Commands;
 
+use App\Jobs\UpdateSeriesSeasonJob;
 use Illuminate\Console\Command;
 
 class UpdateSeriesSeason extends Command
@@ -25,7 +26,7 @@ class UpdateSeriesSeason extends Command
      */
     public function handle()
     {
-        $job = new \App\Jobs\UpdateSeriesSeason();
+        $job = new UpdateSeriesSeasonJob();
         $job->handle();
     }
 }

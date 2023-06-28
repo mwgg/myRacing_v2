@@ -4,7 +4,7 @@ namespace App\Jobs;
 
 use App\Models\Series;
 
-class UpdateSeries extends UpdateData
+class UpdateSeriesJob extends UpdateDataJob
 {
     public function handle(): void
     {

@@ -6,7 +6,7 @@ use App\Models\SeriesSchedule;
 use App\Models\SeriesSeason;
 use Carbon\Carbon;
 
-class UpdateSeriesSeason extends UpdateData
+class UpdateSeriesSeasonJob extends UpdateDataJob
 {
     public function handle(): void
     {
@@ -35,7 +35,7 @@ class UpdateSeriesSeason extends UpdateData
             );
 
             $seriesSeason->carClasses()->sync($season->car_class_ids);
-            
+
             foreach($season->schedules as $week)
             {
                 $schedule = SeriesSchedule::updateOrCreate(

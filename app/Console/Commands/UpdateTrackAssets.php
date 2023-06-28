@@ -2,6 +2,7 @@
 
 namespace App\Console\Commands;
 
+use App\Jobs\UpdateTrackAssetsJob;
 use Illuminate\Console\Command;
 
 class UpdateTrackAssets extends Command
@@ -25,7 +26,7 @@ class UpdateTrackAssets extends Command
      */
     public function handle()
     {
-        $job = new \App\Jobs\UpdateTrackAssets();
+        $job = new UpdateTrackAssetsJob();
         $job->handle();
     }
 }

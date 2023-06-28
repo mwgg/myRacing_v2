@@ -4,7 +4,7 @@ namespace App\Jobs;
 
 use App\Models\Track;
 
-class UpdateTracks extends UpdateData
+class UpdateTracksJob extends UpdateDataJob
 {
     public function handle(): void
     {
