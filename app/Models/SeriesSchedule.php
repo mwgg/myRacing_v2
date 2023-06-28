@@ -31,6 +31,10 @@ class SeriesSchedule extends Model
         'start_date' => 'datetime:Y-m-d H:i:s',
     ];
 
+    public function getWeekNumberAttribute() {
+        return $this->race_week_num + 1;
+    }
+
     public function series()
     {
         return $this->belongsTo(Series::class, 'series_id', 'series_id');
@@ -65,7 +69,7 @@ class SeriesSchedule extends Model
 
     public function formatRaceWeekNum()
     {
-        return 'Week ' . $this->race_week_num + 1;
+        return 'Week ' . $this->week_number;
     }
 
     public function tooltipText()
