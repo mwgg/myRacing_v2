@@ -26,7 +26,6 @@ class UpdateSeriesSeason extends Command
      */
     public function handle()
     {
-        $job = new UpdateSeriesSeasonJob();
-        $job->handle();
+        UpdateSeriesSeasonJob::dispatch();
     }
 }

@@ -26,7 +26,6 @@ class UpdateTrackAssets extends Command
      */
     public function handle()
     {
-        $job = new UpdateTrackAssetsJob();
-        $job->handle();
+        UpdateTrackAssetsJob::dispatch();
     }
 }

@@ -26,7 +26,6 @@ class UpdateSeries extends Command
      */
     public function handle()
     {
-        $job = new UpdateSeriesJob();
-        $job->handle();
+        UpdateSeriesJob::dispatch();
     }
 }

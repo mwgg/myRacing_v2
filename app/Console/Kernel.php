@@ -14,25 +14,25 @@ class Kernel extends ConsoleKernel
     protected function schedule(Schedule $schedule): void
     {
         $schedule->command('update:series')
-            ->dailyAt('0:00');
+            ->daily();
 
         $schedule->command('update:series-season')
-            ->dailyAt('0:01');
+            ->daily();
 
         $schedule->command('update:tracks')
-            ->dailyAt('0:02');
+            ->daily();
 
         $schedule->command('update:cars')
-            ->dailyAt('0:03');
+            ->daily();
 
         $schedule->command('update:car-class')
-            ->dailyAt('0:04');
+            ->daily();
 
         $schedule->command('update:series-assets')
-            ->dailyAt('0:05');
+            ->daily();
 
         $schedule->command('update:track-assets')
-            ->dailyAt('0:06');
+            ->daily();
     }
 
     /**

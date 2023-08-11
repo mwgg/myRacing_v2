@@ -26,7 +26,6 @@ class UpdateCarClass extends Command
      */
     public function handle()
     {
-        $job = new UpdateCarClassJob();
-        $job->handle();
+        UpdateCarClassJob::dispatch();
     }
 }

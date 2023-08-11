@@ -26,7 +26,6 @@ class UpdateTracks extends Command
      */
     public function handle()
     {
-        $job = new UpdateTracksJob();
-        $job->handle();
+        UpdateTracksJob::dispatch();
     }
 }
