@@ -5,12 +5,13 @@ namespace App\Jobs;
 use App\Models\SeriesSchedule;
 use App\Models\SeriesSeason;
 use Carbon\Carbon;
+use iRacingPHP\iRacing;
 
 class UpdateSeriesSeasonJob extends UpdateDataJob
 {
-    public function handle(): void
+    public function handle(iRacing $iracing): void
     {
-        $seasons = $this->iracing->series->seasons();
+        $seasons = $iracing->series->seasons();
 
         foreach($seasons as $season)
         {

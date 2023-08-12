@@ -3,12 +3,13 @@
 namespace App\Jobs;
 
 use App\Models\Car;
+use iRacingPHP\iRacing;
 
 class UpdateCarsJob extends UpdateDataJob
 {
-    public function handle(): void
+    public function handle(iRacing $iracing): void
     {
-        $cars = $this->iracing->car->get();
+        $cars = $iracing->car->get();
 
         foreach($cars as $c)
         {

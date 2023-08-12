@@ -3,12 +3,13 @@
 namespace App\Jobs;
 
 use App\Models\Track;
+use iRacingPHP\iRacing;
 
 class UpdateTracksJob extends UpdateDataJob
 {
-    public function handle(): void
+    public function handle(iRacing $iracing): void
     {
-        $tracks = $this->iracing->track->get();
+        $tracks = $iracing->track->get();
 
         foreach($tracks as $t)
         {

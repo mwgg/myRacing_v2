@@ -3,12 +3,13 @@
 namespace App\Jobs;
 
 use App\Models\Series;
+use iRacingPHP\iRacing;
 
 class UpdateSeriesAssetsJob extends UpdateDataJob
 {
-    public function handle(): void
+    public function handle(iRacing $iracing): void
     {
-        $assets = $this->iracing->series->assets();
+        $assets = $iracing->series->assets();
 
         foreach($assets as $asset)
         {
