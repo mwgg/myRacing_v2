@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\iRacing\Constants;
+use Carbon\Carbon;
 use GeneaLabs\LaravelModelCaching\Traits\Cachable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -35,7 +36,11 @@ class Series extends Model
     public static function withCurrentSeasonSchedules($sortByLicense = true)
     {
         $series = Series::with('currentSeason', 'currentSeason.schedules', 'currentSeason.schedules.track', 'currentSeason.carClasses', 'currentSeason.carClasses.cars')
-            ->whereHas('currentSeason')
+            ->whereHas('currentSeason', function($query) {
+                $query->whereHas('schedules', function($query) {
+                    $query->where('start_date', '>=', Carbon::now()->startOfDay());
+                });
+            })
             ->orderBy('category_id')
             ->orderBy('series_name')
             ->get();
