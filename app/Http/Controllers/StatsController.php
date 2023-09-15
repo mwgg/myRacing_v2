@@ -4,8 +4,8 @@ namespace App\Http\Controllers;
 
 use App\iRacing\Constants;
 use App\Models\Series;
-use App\Models\SeriesSchedule;
 use App\Models\Track;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class StatsController extends Controller
@@ -13,10 +13,13 @@ class StatsController extends Controller
     public function stats(Request $request)
     {
         $series = Series::with('currentSeason', 'currentSeason.schedules', 'currentSeason.schedules.track')
-        ->whereHas('currentSeason', function($query) {
-            $query->where('license_group', '>=', 2);
-        })
-        ->get();
+            ->whereHas('currentSeason', function($query) {
+                $query->where('license_group', '>=', 2)
+                ->whereHas('schedules', function($query) {
+                    $query->where('start_date', '>=', Carbon::now()->startOfDay());
+                });
+            })
+            ->get();
 
         $trackCounts = [];
         $usedTrackPackageIds = [];
