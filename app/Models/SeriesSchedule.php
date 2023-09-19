@@ -47,7 +47,7 @@ class SeriesSchedule extends Model
 
     public function isCurrentWeek()
     {
-        return $this->start_date == Carbon::now()->startOfWeek(2);
+        return $this->start_date->between(Carbon::now()->startOfWeek(2), Carbon::now()->addDays(6)->endOfDay());
     }
 
     public function isPastWeek()
