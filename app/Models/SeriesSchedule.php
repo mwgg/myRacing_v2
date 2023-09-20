@@ -35,6 +35,11 @@ class SeriesSchedule extends Model
         return $this->race_week_num + 1;
     }
 
+    public function getStartOfCurrentWeekAttribute()
+    {
+        return Carbon::now()->startOfWeek(2);
+    }
+
     public function series()
     {
         return $this->belongsTo(Series::class, 'series_id', 'series_id');
@@ -47,12 +52,12 @@ class SeriesSchedule extends Model
 
     public function isCurrentWeek()
     {
-        return $this->start_date->between(Carbon::now()->startOfWeek(2), Carbon::now()->addDays(6)->endOfDay());
+        return $this->start_date->between($this->startOfCurrentWeek, $this->startOfCurrentWeek->addDays(6)->endOfDay());
     }
 
     public function isPastWeek()
     {
-        return $this->start_date < Carbon::now()->startOfWeek(2);
+        return $this->start_date < $this->startOfCurrentWeek;
     }
 
     public function formatStartType()
