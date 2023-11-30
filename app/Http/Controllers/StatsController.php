@@ -14,10 +14,7 @@ class StatsController extends Controller
     {
         $series = Series::with('currentSeason', 'currentSeason.schedules', 'currentSeason.schedules.track')
             ->whereHas('currentSeason', function($query) {
-                $query->where('license_group', '>=', 2)
-                ->whereHas('schedules', function($query) {
-                    $query->where('start_date', '>=', Carbon::now()->startOfDay());
-                });
+                $query->where('license_group', '>=', 2);
             })
             ->get();
 
@@ -34,6 +31,7 @@ class StatsController extends Controller
         }
 
         foreach(array_keys(Constants::CATEGORIES) as $categoryId) {
+            if(!isset($trackCounts[$categoryId])) continue;
             arsort($trackCounts[$categoryId]);
         }
 

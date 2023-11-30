@@ -14,7 +14,7 @@
                             <div class="card-body">
                                 <h5 class="mt-1 mb-3 ml-1"><span class="iracing-icons subtitle-icon">{!! \App\iRacing\Constants::CAT_ICONS[$categoryId] !!}</span> {{ \App\iRacing\Constants::CATEGORIES[$categoryId] }}</h5>
                                 <table class="table table-dark table-sm">
-                                    @foreach(array_slice($trackCounts[$categoryId], 0, 10) as $trackName=>$trackCount)
+                                    @foreach(array_slice($trackCounts[$categoryId] ?? [], 0, 10) as $trackName=>$trackCount)
                                         <tr>
                                             <td>{{ $trackName }}</td>
                                             <td>{{ $trackCount }}</td>

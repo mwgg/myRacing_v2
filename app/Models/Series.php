@@ -27,20 +27,17 @@ class Series extends Model
 
     public function currentSeason()
     {
-        return $this->seasons()->one()->ofMany([], function($query)
-        {
-            $query->where('active', true);
-        });
+        return $this->hasOne(SeriesSeason::class, 'series_id', 'series_id')
+            ->where('active', true)
+            ->whereHas('schedules', function($query) {
+                $query->where('start_date', '>=', Carbon::now()->startOfWeek(2)->startOfDay());
+            });
     }
 
     public static function withCurrentSeasonSchedules($sortByLicense = true)
     {
         $series = Series::with('currentSeason', 'currentSeason.schedules', 'currentSeason.schedules.track', 'currentSeason.carClasses', 'currentSeason.carClasses.cars')
-            ->whereHas('currentSeason', function($query) {
-                $query->whereHas('schedules', function($query) {
-                    $query->where('start_date', '>=', Carbon::now()->startOfDay());
-                });
-            })
+            ->whereHas('currentSeason')
             ->orderBy('category_id')
             ->orderBy('series_name')
             ->get();
