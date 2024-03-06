@@ -38,13 +38,16 @@ class Constants
         1 => 'Oval',
         2 => 'Road',
         3 => 'Dirt oval',
-        4 => 'Dirt road'
+        4 => 'Dirt road',
+        5 => 'Sports Car',
+        6 => 'Formula Car',
     ];
 
-    public const CAT_ICONS = [
-        1 => '&#xE0B7;',
-        2 => '&#xE0CE;',
-        3 => '&#xE0B8;',
-        4 => '&#xE0D0;'
+    public const ACTIVE_CATEGORIES = [
+        1 => 'Oval',
+        5 => 'Sports Car',
+        6 => 'Formula Car',
+        3 => 'Dirt oval',
+        4 => 'Dirt road',
     ];
 }

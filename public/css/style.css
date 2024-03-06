@@ -56,7 +56,7 @@ h1 {
     font-family: iracing-icons;
 }
 .subtitle-icon {
-    font-size: 17px;
+    margin-right: 0.2rem;
 }
 .category-icon {
     margin-right: 2px;
@@ -99,27 +99,52 @@ h1 {
     transition: 0.1s ease-in-out;
 }
 .license-badge {
-    color: var(--bs-dark) !important;
-    left: 12px;
-    top: 13px;
+    display: flex;
+    -webkit-box-align: center;
+    flex-direction: row;
+    border-style: solid;
+    border-radius: 6px;
+    border-width: 1px;
+    height: 20px;
+    padding-left: 5px;
+    padding-right: 5px;
+    font-size: 13px;
+    font-weight: 600;
+    text-wrap: nowrap;
+    line-height: 15px;
 }
 .license-r {
-    background-color: #EC2029 !important;
+    background: #5D1214;
+    border-color: #E1251B;
+    color: #ED7C76;
 }
 .license-d {
-    background-color: #FF6600 !important;
+    background: #692C09;
+    border-color: #FF6600;
+    color: #FFA366;
 }
 .license-c {
-    background-color: #FFCC00 !important;
+    background: #50410A;
+    border-color: #FFCC00;
+    color: #FFE066;
 }
 .license-b {
-    background-color: #33CC00 !important;
+    background: #175509;
+    border-color: #33CC00;
+    color: #85E066;
 }
 .license-a, .license-pro, .license-prowc {
-    background-color: #00CCCC !important;
+    background: #032F6F;
+    border-color: #006EFF;
+    color: #66A8FF;
 }
-.pill-cat-license {
-    width: 69px; /* Nice */
+.planner-card .license-badge {
+    left: 11px;
+    top: 13px;
+}
+.planner-card .license-icon {
+    margin-top: 0px;
+    margin-right: 5px;
 }
 .track-container {
     width: 265px;
@@ -331,4 +356,12 @@ h1 {
 }
 .simplebar-track.simplebar-horizontal {
     height: 13px;
+}
+.license-icon {
+    max-width: 24px;
+    max-height: 24px;
+    margin-top: -6px;
+}
+.filters label {
+    width: 40px;
 }

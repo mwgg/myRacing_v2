@@ -7,9 +7,11 @@
             <div class="filters mt-1 mb-2 text-center">
                 <input type="radio" class="btn-check" name="filter-category" id="filter-category-0" value="0" autocomplete="off" checked>
                 <label class="btn btn-sm btn-outline-secondary" for="filter-category-0">All</label>
-                @foreach(\App\iRacing\Constants::CATEGORIES as $categoryId=>$categoryName)
+                @foreach(\App\iRacing\Constants::ACTIVE_CATEGORIES as $categoryId=>$categoryName)
                     <input type="radio" class="btn-check" name="filter-category" id="filter-category-{{ $categoryId }}" value="{{ $categoryId }}" autocomplete="off">
-                    <label class="btn btn-sm btn-outline-secondary" for="filter-category-{{ $categoryId }}"><span class="iracing-icons">{!! \App\iRacing\Constants::CAT_ICONS[$categoryId] !!}</span> {{ $categoryName }}</label>
+                    <label class="btn btn-sm btn-outline-secondary" for="filter-category-{{ $categoryId }}" data-bs-toggle="tooltip" data-bs-html="true" title="{{ $categoryName }}">
+                        <x-dynamic-component :component="'license-icons.' . $categoryId" />
+                    </label>
                 @endforeach
             </div>
             <div class="calendar">
