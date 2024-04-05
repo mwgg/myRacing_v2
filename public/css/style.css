@@ -372,3 +372,7 @@ h1 {
     max-height: 18px;
     opacity: 0.3;
 }
+.track-category-icon {
+    margin-top: -4px;
+    margin-bottom: -6px;
+}

@@ -25,6 +25,7 @@ class SeriesSchedule extends Model
         'full_course_cautions',
         'start_zone',
         'track_id',
+        'precip_chance',
     ];
 
     protected $casts = [
@@ -48,6 +49,12 @@ class SeriesSchedule extends Model
     public function track()
     {
         return $this->hasOne(Track::class, 'track_id', 'track_id');
+    }
+
+    public function cars()
+    {
+        return $this->belongsToMany(Car::class, 'series_schedule_car', 'season_id', 'car_id', 'season_id', 'car_id')
+            ->where('race_week_num', $this->race_week_num);
     }
 
     public function isCurrentWeek()
@@ -79,9 +86,18 @@ class SeriesSchedule extends Model
 
     public function tooltipText()
     {
+        $carNames = $this->cars->pluck('car_name')->toArray();
+
         $lines = [$this->formatRaceWeekNum() .', '. $this->start_date->format('F j')];
         $lines[] = $this->formatStartType() .', '. $this->formatRaceLength();
-
+        $lines[] = $this->precip_chance . '% chance of rain';
+        if(count($carNames)) $lines[] = implode(', ', $carNames);
         return implode('<br>', $lines);
+    }
+
+    public function getPrecipitationOpacityAttribute()
+    {
+        if($this->precip_chance === 0) return 0;
+        return max(0.4, min(1, $this->precip_chance / 100));
     }
 }

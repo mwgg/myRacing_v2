@@ -37,6 +37,7 @@ class UpdateSeriesSeasonJob extends UpdateDataJob
 
             $seriesSeason->carClasses()->sync($season->car_class_ids);
 
+            $carIds = [];
             foreach($season->schedules as $week)
             {
                 $schedule = SeriesSchedule::updateOrCreate(
@@ -56,9 +57,19 @@ class UpdateSeriesSeasonJob extends UpdateDataJob
                         'full_course_cautions' => $week->full_course_cautions,
                         'start_zone' => $week->start_zone,
                         'track_id' => $week->track->track_id,
+                        'precip_chance' => $week->weather?->weather_summary?->precip_chance ?? 0,
                     ]
                 );
+
+                foreach($week->race_week_cars as $car) {
+                    $carIds[$car->car_id] = [
+                        'race_week_num' => $week->race_week_num,
+                    ];
+                }
+
             }
+
+            $schedule->cars()->sync($carIds);
         }
     }
 }

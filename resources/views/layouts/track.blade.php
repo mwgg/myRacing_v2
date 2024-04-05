@@ -9,10 +9,13 @@
         <div>
             {{ $schedule->week_number }}
         </div>
-        <div>
-            <span class="track-category-icon">
+        <div class="track-category-icon">
+            <span>
                 <x-dynamic-component :component="'license-icons.' . $schedule->track->category_id" />
             </span>
+        </div>
+        <div class="iracing-icons track-rain-icon" style="opacity: {{ $schedule->precipitation_opacity }};">
+            &#xE041;
         </div>
     </div>
     <div class="track-logo" style="background: url({{ $schedule->track->logo_url }}) no-repeat;"></div>
