@@ -24,8 +24,10 @@ class UpdateTrackAssets extends Command
     /**
      * Execute the console command.
      */
-    public function handle()
+    public function handle(): int
     {
         UpdateTrackAssetsJob::dispatch();
+
+        return Command::SUCCESS;
     }
 }

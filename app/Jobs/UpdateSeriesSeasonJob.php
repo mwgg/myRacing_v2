@@ -13,8 +13,7 @@ class UpdateSeriesSeasonJob extends UpdateDataJob
     {
         $seasons = $iracing->series->seasons();
 
-        foreach($seasons as $season)
-        {
+        foreach ($seasons as $season) {
             $seriesSeason = SeriesSeason::updateOrCreate(
                 [
                     'series_id' => $season->series_id,
@@ -38,11 +37,12 @@ class UpdateSeriesSeasonJob extends UpdateDataJob
             $seriesSeason->carClasses()->sync($season->car_class_ids);
 
             $carIds = [];
-            foreach($season->schedules as $week)
-            {
+            foreach ($season->schedules as $week) {
+                $uniqueId = $week->series_id . $week->season_id . $week->race_week_num;
+
                 $schedule = SeriesSchedule::updateOrCreate(
                     [
-                        'unique_id' => $week->series_id . $week->season_id . $week->race_week_num,
+                        'unique_id' => $uniqueId,
                     ],
                     [
                         'series_id' => $week->series_id,
@@ -61,9 +61,10 @@ class UpdateSeriesSeasonJob extends UpdateDataJob
                     ]
                 );
 
-                foreach($week->race_week_cars as $car) {
+                foreach ($week->race_week_cars as $car) {
                     $carIds[$car->car_id] = [
                         'race_week_num' => $week->race_week_num,
+                        'unique_id' => $uniqueId,
                     ];
                 }
 

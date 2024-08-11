@@ -11,8 +11,7 @@ class UpdateTracksJob extends UpdateDataJob
     {
         $tracks = $iracing->track->get();
 
-        foreach($tracks as $t)
-        {
+        foreach ($tracks as $t) {
             $track = Track::updateOrCreate(
                 [
                     'track_id' => $t->track_id

@@ -11,8 +11,7 @@ class UpdateSeriesJob extends UpdateDataJob
     {
         $series = $iracing->series->get();
 
-        foreach($series as $s)
-        {
+        foreach ($series as $s) {
             $serie = Series::updateOrCreate(
                 [
                     'series_id' => $s->series_id

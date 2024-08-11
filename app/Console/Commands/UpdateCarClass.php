@@ -24,8 +24,10 @@ class UpdateCarClass extends Command
     /**
      * Execute the console command.
      */
-    public function handle()
+    public function handle(): int
     {
         UpdateCarClassJob::dispatch();
+
+        return Command::SUCCESS;
     }
 }

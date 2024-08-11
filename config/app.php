@@ -185,4 +185,8 @@ return [
         // 'Example' => App\Facades\Example::class,
     ])->toArray(),
 
+    'iracing' => [
+        'username' => env('IRACING_USERNAME'),
+        'password' => env('IRACING_PASSWORD'),
+    ],
 ];

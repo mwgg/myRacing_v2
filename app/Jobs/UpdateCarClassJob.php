@@ -11,8 +11,7 @@ class UpdateCarClassJob extends UpdateDataJob
     {
         $classes = $iracing->carclass->get();
 
-        foreach($classes as $c)
-        {
+        foreach ($classes as $c) {
             $carClass = CarClass::updateOrCreate(
                 [
                     'car_class_id' => $c->car_class_id

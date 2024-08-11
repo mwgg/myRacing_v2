@@ -11,10 +11,9 @@ class UpdateTrackAssetsJob extends UpdateDataJob
     {
         $assets = $iracing->track->assets();
 
-        foreach($assets as $asset)
-        {
+        foreach ($assets as $asset) {
             $track = Track::where('track_id', $asset->track_id)->first();
-            if(!$track) continue;
+            if (!$track) continue;
 
             $track->image_url = 'https://images-static.iracing.com' . $asset->folder . '/' . $asset->small_image;
             $track->logo_url = 'https://images-static.iracing.com' . $asset->logo;

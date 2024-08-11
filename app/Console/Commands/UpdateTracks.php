@@ -24,8 +24,10 @@ class UpdateTracks extends Command
     /**
      * Execute the console command.
      */
-    public function handle()
+    public function handle(): int
     {
         UpdateTracksJob::dispatch();
+
+        return Command::SUCCESS;
     }
 }

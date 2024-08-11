@@ -13,7 +13,7 @@ class AppServiceProvider extends ServiceProvider
     public function register(): void
     {
         $this->app->bind(iRacing::class, function() {
-            return new iRacing(env('IRACING_USERNAME'), env('IRACING_PASSWORD'));
+            return new iRacing(config('app.iracing.username'), config('app.iracing.password'));
         });
     }
 
