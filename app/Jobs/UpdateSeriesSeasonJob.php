@@ -5,6 +5,7 @@ namespace App\Jobs;
 use App\Models\SeriesSchedule;
 use App\Models\SeriesSeason;
 use Carbon\Carbon;
+use Illuminate\Support\Arr;
 use iRacingPHP\iRacing;
 
 class UpdateSeriesSeasonJob extends UpdateDataJob
@@ -36,7 +37,6 @@ class UpdateSeriesSeasonJob extends UpdateDataJob
 
             $seriesSeason->carClasses()->sync($season->car_class_ids);
 
-            $carIds = [];
             foreach ($season->schedules as $week) {
                 $uniqueId = $week->series_id . $week->season_id . $week->race_week_num;
 
@@ -61,16 +61,8 @@ class UpdateSeriesSeasonJob extends UpdateDataJob
                     ]
                 );
 
-                foreach ($week->race_week_cars as $car) {
-                    $carIds[$car->car_id] = [
-                        'race_week_num' => $week->race_week_num,
-                        'unique_id' => $uniqueId,
-                    ];
-                }
-
+                $schedule->cars()->sync(Arr::pluck($week->race_week_cars, 'car_id'));
             }
-
-            $schedule->cars()->sync($carIds);
         }
     }
 }
